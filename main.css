@@ -81,6 +81,7 @@ button {
     background: url('img/back.png') no-repeat;
     background-position: center;
     background-size: cover;
+    position: relative;
 }
 
 .about__info {
@@ -371,6 +372,13 @@ footer h3 {
   background-color: #f6980c;
   box-shadow: 0 16px 36px rgba(246 152 12 / 20%);
   transition: background-color 0.3s ease-in;
+}
+
+.orb-canvas {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
 }
 
 @media (max-width: 1024px) {
