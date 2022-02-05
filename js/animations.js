@@ -21,4 +21,84 @@ function increaseNumberAnimationStep(i, element, endNumber) {
     increaseNumberAnimationStep(0, element, 5000);
   };
 
-  initIncreaseNumberAnimation();
+  //initIncreaseNumberAnimation();
+
+  document.querySelector('#budget').addEventListener('change', function handleSelectChange(event) {
+    if (event.target.value === 'other') {
+      const formContainer = document.createElement('div');
+      formContainer.classList.add('form__group');
+      formContainer.classList.add('form__other-input');
+   
+      const input = document.createElement('input');
+      input.placeholder = "Введите ваш вариант";
+      input.type = "text";
+   
+      formContainer.appendChild(input);
+      console.log(formContainer)
+      console.log(document.querySelector('.form__submit'))
+      document.querySelector('.form form').insertBefore(formContainer, document.querySelector('.form__submit')); 
+    }
+   
+    const otherInput = document.querySelector('.form__other-input');
+
+    if (event.target.value !== 'other' && Boolean(otherInput)) {
+      
+
+      document.querySelector('.form form').removeChild(otherInput);
+    }
+  });
+
+  function updateScroll() {
+    if (window.scrollY > 0) {
+      document.querySelector('header').classList.add('header__scrolled');
+    } else {
+      document.querySelector('header').classList.remove('header__scrolled');
+    }
+   
+    // Запуск анимации увеличения числа
+    let windowBottomPosition = window.scrollY + window.innerHeight;
+    let countElementPosition = document.querySelector('.features__clients-count').offsetTop;
+    let animationInited = false;
+    if (windowBottomPosition >= countElementPosition && !animationInited) {
+      animationInited = true;
+      initIncreaseNumberAnimation();
+    }
+  }
+   
+  window.addEventListener('scroll', updateScroll);
+
+  // function addSmoothScroll(anchor) {
+  //   anchor.addEventListener('click', function (e) {
+  //     e.preventDefault();
+   
+  //     document.querySelector(this.getAttribute('href')).scrollIntoView({
+  //       behavior: 'smooth'
+  //     });
+  //   });
+  // }
+
+  // document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  //   addSmoothScroll(anchor);
+  // });
+
+  // function onLinkClick(event) {
+  //   event.preventDefault();
+    
+  //   })
+  // }
+
+  
+
+  function addSmoothScroll(anchor) {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+   
+      document.querySelector(this.getAttribute('href')).scrollIntoView({
+        behavior: 'smooth'
+      });
+    });
+  }
+   
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    addSmoothScroll(anchor);
+  });
